@@ -1,0 +1,71 @@
+/* App.css */
+body, html {
+    height: 100%;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    background-image: url("assets/img/fondo2.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    max-width: 100%;
+
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 5px;
+    width: 100%;
+    padding:20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(36,36,36,0.9)
+}
+
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.formulario-libro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    width: 30%;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.form-group input {
+    width: 70%;
+}
+
+@font-face {
+    font-family: 'MyFont';
+    src: url('./assets/fonts/MyFont.ttf') format('truetype');
+}
+
+h1 {
+    font-family: 'MyFont', sans-serif;
+    text-shadow:
+            -1px -1px 0 #ff0000,
+            1px -1px 0 #ff0000,
+            -1px  1px 0 #FF0000FF,
+            1px  1px 0 #FF0000FF;
+}
