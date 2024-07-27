@@ -36,8 +36,27 @@ function FormularioLibro({ agregarLibro }) {
                 <Input type="text" name="clave2" value={libro.clave2} onChange={manejarCambio} required/>
             </FormGroup>
             <FormGroup className="form-group">
-                <Label for="clave3">Año:</Label>
-                <Input type="text" name="clave3" value={libro.clave3} onChange={manejarCambio}/>
+                <Label for="clave3">Tapa Dura: </Label>
+                <div>
+                    <Input
+                        type="radio"
+                        name="clave3"
+                        value="sí"
+                        checked={libro.clave3 === 'sí'}
+                        onChange={manejarCambio}
+                    />
+                    <Label for="clave3Sí">Sí</Label>
+                </div>
+                <div>
+                    <Input
+                        type="radio"
+                        name="clave3"
+                        value="no"
+                        checked={libro.clave3 === 'no'}
+                        onChange={manejarCambio}
+                    />
+                    <Label for="clave3No">No</Label>
+                </div>
             </FormGroup>
             <FormGroup className="form-group">
                 <Label for="clave4">Autor:</Label>
