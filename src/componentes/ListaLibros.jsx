@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Table, Button, Alert } from 'reactstrap';
+import { Table, Button,} from 'reactstrap';
+import toast, { toastConfig } from 'react-simple-toasts';
+import 'react-simple-toasts/dist/theme/light.css';
+
+toastConfig({ theme: 'light' });
 
 function ListaLibros({ libros, actualizarLibro, eliminarLibro }) {
     const [editando, setEditando] = useState(null);
-    const [mensaje, setMensaje] = useState('');
 
     const manejarCambioEdicion = (e) => {
         const { name, value } = e.target;
@@ -16,23 +19,17 @@ function ListaLibros({ libros, actualizarLibro, eliminarLibro }) {
     const guardarEdicion = () => {
         actualizarLibro({ ...editando, clave1: parseInt(editando.clave1, 10) });
         setEditando(null);
-        setMensaje('Libro Editado');
-        setTimeout(() => {
-            setMensaje('');
-        }, 3000); // El mensaje desaparecerá después de 3 segundos
+
     };
 
     const eliminarLibroConMensaje = (clave1) => {
         eliminarLibro(clave1);
-        setMensaje('Libro Eliminado');
-        setTimeout(() => {
-            setMensaje('');
-        }, 3000); // El mensaje desaparecerá después de 3 segundos
+
     };
 
     return (
         <>
-            {mensaje && <Alert color="success">{mensaje}</Alert>}
+
             <Table>
                 <thead>
                 <tr>
@@ -52,8 +49,21 @@ function ListaLibros({ libros, actualizarLibro, eliminarLibro }) {
                             <td><input type="text" name="clave3" value={editando.clave3} onChange={manejarCambioEdicion} /></td>
                             <td><input type="text" name="clave4" value={editando.clave4} onChange={manejarCambioEdicion} /></td>
                             <td>
-                                <Button color="success" onClick={guardarEdicion}>Guardar</Button>
-                                <Button color="secondary" onClick={() => setEditando(null)}>Cancelar</Button>
+                                <Button color="success" onClick={() => {
+                                    guardarEdicion();
+                                    toast('Tu edición ha sido guardada!');
+                                }}>
+                                    Guardar
+                                </Button>
+                                <Button
+                                    color="secondary"
+                                    onClick={() => {
+                                        setEditando(null);
+                                        toast('Tu edición ha sido cancelada!');
+                                    }}
+                                >
+                                    Cancelar
+                                </Button>
                             </td>
                         </tr>
                     ) : (
@@ -63,8 +73,24 @@ function ListaLibros({ libros, actualizarLibro, eliminarLibro }) {
                             <td>{libro.clave3}</td>
                             <td>{libro.clave4}</td>
                             <td>
-                                <Button color="warning" onClick={() => setEditando(libro)}>Editar</Button>
-                                <Button color="danger" onClick={() => eliminarLibroConMensaje(libro.clave1)}>Eliminar</Button>
+                                <Button
+                                    color="warning"
+                                    onClick={() => {
+                                        setEditando(libro);
+                                        toast('Estás editando el libro!');
+                                    }}
+                                >
+                                    Editar
+                                </Button>
+                                <Button
+                                    color="danger"
+                                    onClick={() => {
+                                        eliminarLibroConMensaje(libro.clave1);
+                                        toast('El libro ha sido eliminado!');
+                                    }}
+                                >
+                                    Eliminar
+                                </Button>
                             </td>
                         </tr>
                     )
