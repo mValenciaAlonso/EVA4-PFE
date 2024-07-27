@@ -5,6 +5,7 @@ import 'react-simple-toasts/dist/theme/light.css';
 
 toastConfig({ theme: 'light' });
 
+// eslint-disable-next-line react/prop-types
 function ListaLibros({ libros, actualizarLibro, eliminarLibro }) {
     const [editando, setEditando] = useState(null);
 
